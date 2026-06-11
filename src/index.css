@@ -228,3 +228,29 @@
   animation: float 6s ease-in-out infinite;
   animation-delay: 2s;
 }
+@keyframes floatDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-1 {
+  animation: floatDown 0.8s ease forwards;
+}
+
+.animate-float-2 {
+  animation: floatDown 1.1s ease forwards;
+}
+
+.animate-float-3 {
+  animation: floatDown 1.4s ease forwards;
+}
+
+.animate-float-4 {
+  animation: floatDown 1.7s ease forwards;
+}
