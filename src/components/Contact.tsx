@@ -12,23 +12,22 @@ function useRevealOnScroll(ref: React.RefObject<HTMLElement | null>) {
     return () => observer.disconnect();
   }, []);
 }
-
 const channels = [
   {
     icon: MessageCircle,
     label: 'WhatsApp',
     desc: 'Fastest response',
     action: 'Chat Now',
-    href: 'https://wa.me/919999999999',
+    href: 'https://wa.me/918309396397',
     bg: '#25D366',
     text: '#FFFFFF',
   },
   {
     icon: Mail,
     label: 'Email',
-    desc: 'hello@omnexa.in',
+    desc: ' supportomnexa@gmail.com',
     action: 'Send Email',
-    href: 'mailto:hello@omnexa.in',
+    href: ' supportomnexa@gmail.com',
     bg: '#0A0A0A',
     text: '#FFFFFF',
   },
@@ -37,7 +36,7 @@ const channels = [
     label: 'Book a Call',
     desc: '30-min discovery call',
     action: 'Schedule',
-    href: '#',
+    href: '#contact-form',
     bg: '#F2F2F2',
     text: '#0A0A0A',
   },
@@ -49,10 +48,31 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   useRevealOnScroll(sectionRef);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const message = `
+🚀 New Lead From Omnexa Website
+
+Name: ${form.name}
+
+Email: ${form.email}
+
+Company: ${form.company}
+
+Budget: ${form.budget}
+
+Project Details:
+${form.message}
+`;
+
+  window.open(
+    `https://wa.me/918309396397?text=${encodeURIComponent(message)}`,
+    '_blank'
+  );
+
+  setSubmitted(true);
+};
 
   return (
     <section id="contact" className="section-padding bg-white" ref={sectionRef}>
@@ -115,11 +135,16 @@ export default function Contact() {
                 </div>
                 <h3 className="text-2xl font-black text-white mb-3">Message Sent!</h3>
                 <p className="text-white/60 text-sm leading-relaxed">
-                  We've received your project brief. Expect a response within 24 hours.
-                </p>
+  Your inquiry has been prepared and redirected to WhatsApp. Please click
+  Send in WhatsApp to submit your project details directly to our team.
+</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+  id="contact-form"
+  onSubmit={handleSubmit}
+  className="space-y-4"
+>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs font-semibold text-omnexa-graphite tracking-wide mb-2 block uppercase">
@@ -160,23 +185,7 @@ export default function Contact() {
                   />
                 </div>
 
-                <div>
-                  <label className="text-xs font-semibold text-omnexa-graphite tracking-wide mb-2 block uppercase">
-                    Project Budget
-                  </label>
-                  <select
-                    value={form.budget}
-                    onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl border border-omnexa-border bg-omnexa-soft-white text-sm text-omnexa-black focus:outline-none focus:border-omnexa-graphite transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="">Select budget range</option>
-                    <option value="25k-50k">₹25,000 – ₹50,000</option>
-                    <option value="50k-1l">₹50,000 – ₹1,00,000</option>
-                    <option value="1l-3l">₹1,00,000 – ₹3,00,000</option>
-                    <option value="3l-5l">₹3,00,000 – ₹5,00,000</option>
-                    <option value="5l+">₹5,00,000+</option>
-                  </select>
-                </div>
+               
 
                 <div>
                   <label className="text-xs font-semibold text-omnexa-graphite tracking-wide mb-2 block uppercase">
@@ -219,22 +228,7 @@ export default function Contact() {
               ))}
             </div>
 
-            <div className="bg-omnexa-soft-white rounded-2xl p-7 border border-omnexa-border">
-              <div className="text-xs font-semibold text-omnexa-gray tracking-widest uppercase mb-4">Typical Project Range</div>
-              <div className="space-y-2">
-                {[
-                  { service: 'Website Design + Dev', range: '₹60K – ₹2L' },
-                  { service: 'Brand Identity', range: '₹25K – ₹75K' },
-                  { service: 'SEO + Marketing', range: '₹20K – ₹60K/mo' },
-                  { service: 'Full Digital Suite', range: '₹2L – ₹10L' },
-                ].map((item) => (
-                  <div key={item.service} className="flex justify-between items-center py-2 border-b border-omnexa-border last:border-0">
-                    <span className="text-sm text-omnexa-graphite">{item.service}</span>
-                    <span className="text-sm font-bold text-omnexa-black">{item.range}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
